@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
  
 class ProductCell: UITableViewCell {
     static let identifier = "ProductCell"
@@ -37,8 +38,10 @@ class ProductCell: UITableViewCell {
         fatalError("init coder has not been implemented!")
     }
     
-    public func configure(with image: UIImage, and label: String){
-        self.imageProduct.image = image
+    public func configure(urlImage imageUrl: String , and label: String){
+        let url = URL(string: imageUrl)
+        imageProduct.kf.setImage(with: url)
+        
         self.nameLabel.text = label
     }
     

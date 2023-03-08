@@ -6,37 +6,73 @@
 //
 
 import UIKit
+import Combine
+import Kingfisher
 
-struct Product {
-    let name: String
-    let image: UIImage
-}
 
 class ViewController: UIViewController {
 
     let tableView = UITableView()
     
-    var products = [
-        Product(name: "Product One", image: UIImage(named: "1")!),
-        Product(name: "Product Two", image: UIImage(named: "2")!),
-        Product(name: "Product three", image: UIImage(named: "3")!),
-        Product(name: "Product four", image: UIImage(named: "4")!)
-    ]
+    var viewModel = ProductVieModel()
+    var anyCancellable : [AnyCancellable] = []
+    var products: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(tableView)
         tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        subscriptions()
+        viewModel.getProducts()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
+  
+    func subscriptions(){
+        viewModel.listOfProducts.sink { completion in
+            switch completion {
+            case .failure(let error):
+                switch error {
+                case ProductError.errorEnServidor:
+                    DispatchQueue.main.async {
+                        self.mostrarAlerta(titulo: "ATENCIÓN", mensaje: "Ocurrió un error en el servidor, favor de intentar mas tarde.")
+                    }
+                case ProductError.badRequest:
+                    DispatchQueue.main.async {
+                        self.mostrarAlerta(titulo: "ATENCIÓN", mensaje: "Ocurrió un error en el servidor, favor de intentar mas tarde.")
+                    }
+                default:
+                    self.mostrarAlerta(titulo: "ATENCIÓN", mensaje: "Ocurrió un error desconocido.")
+                }
+                
+            case .finished:
+                print("Finalizado")
+            }
+            
+        } receiveValue: { [weak self] listProducts in
+            self?.products = listProducts
+            self?.tableView.reloadData()
+        }.store(in: &anyCancellable)
 
+    }
+
+    func mostrarAlerta(titulo: String, mensaje: String) {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        let accionAceptar = UIAlertAction(title: "OK", style: .default) { _ in
+            //Do something
+        }
+        alerta.addAction(accionAceptar)
+        present(alerta, animated: true)
+    }
 
 }
 
@@ -49,7 +85,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell else {
             fatalError("Error creating custom cell")
         }
-        cell.configure(with: products[indexPath.row].image, and: products[indexPath.row].name)
+        
+        cell.configure(urlImage: products[indexPath.row].thumbnail, and: products[indexPath.row].title)
+        
         return cell
     }
     
