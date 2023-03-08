@@ -16,6 +16,8 @@
 		6C47B13629B8C76D00B5E376 /* ListPostsTableVProgCombineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47B13529B8C76D00B5E376 /* ListPostsTableVProgCombineTests.swift */; };
 		6C47B14029B8C76D00B5E376 /* ListPostsTableVProgCombineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47B13F29B8C76D00B5E376 /* ListPostsTableVProgCombineUITests.swift */; };
 		6C47B14229B8C76D00B5E376 /* ListPostsTableVProgCombineUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47B14129B8C76D00B5E376 /* ListPostsTableVProgCombineUITestsLaunchTests.swift */; };
+		6C47B14F29B8C7C800B5E376 /* PostVieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47B14E29B8C7C800B5E376 /* PostVieModel.swift */; };
+		6C47B15129B8CB8600B5E376 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C47B15029B8CB8600B5E376 /* ProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		6C47B13B29B8C76D00B5E376 /* ListPostsTableVProgCombineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListPostsTableVProgCombineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C47B13F29B8C76D00B5E376 /* ListPostsTableVProgCombineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPostsTableVProgCombineUITests.swift; sourceTree = "<group>"; };
 		6C47B14129B8C76D00B5E376 /* ListPostsTableVProgCombineUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPostsTableVProgCombineUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6C47B14E29B8C7C800B5E376 /* PostVieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVieModel.swift; sourceTree = "<group>"; };
+		6C47B15029B8CB8600B5E376 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				6C47B12729B8C76D00B5E376 /* Assets.xcassets */,
 				6C47B12929B8C76D00B5E376 /* LaunchScreen.storyboard */,
 				6C47B12C29B8C76D00B5E376 /* Info.plist */,
+				6C47B14E29B8C7C800B5E376 /* PostVieModel.swift */,
+				6C47B15029B8CB8600B5E376 /* ProductCell.swift */,
 			);
 			path = ListPostsTableVProgCombine;
 			sourceTree = "<group>";
@@ -258,7 +264,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C47B14F29B8C7C800B5E376 /* PostVieModel.swift in Sources */,
 				6C47B12329B8C76C00B5E376 /* ViewController.swift in Sources */,
+				6C47B15129B8CB8600B5E376 /* ProductCell.swift in Sources */,
 				6C47B11F29B8C76C00B5E376 /* AppDelegate.swift in Sources */,
 				6C47B12129B8C76C00B5E376 /* SceneDelegate.swift in Sources */,
 			);
