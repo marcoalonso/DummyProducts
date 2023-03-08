@@ -86,13 +86,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("Error creating custom cell")
         }
         
-        cell.configure(urlImage: products[indexPath.row].thumbnail, and: products[indexPath.row].title)
+        cell.configure(urlImage: products[indexPath.row].thumbnail, and: products[indexPath.row].title, "\(products[indexPath.row].price)")
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 120
     }
     
     

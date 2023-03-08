@@ -24,8 +24,17 @@ class ProductCell: UITableViewCell {
        let label = UILabel()
         label.textColor = .label
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.text = "Hello"
+        return label
+    }()
+    
+    private let priceLabel : UILabel = {
+       let label = UILabel()
+        label.textColor = .red
+        label.textAlignment = .right
+        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.text = "$15.4"
         return label
     }()
     
@@ -38,22 +47,25 @@ class ProductCell: UITableViewCell {
         fatalError("init coder has not been implemented!")
     }
     
-    public func configure(urlImage imageUrl: String , and label: String){
+    public func configure(urlImage imageUrl: String , and label: String, _ price: String){
         let url = URL(string: imageUrl)
         imageProduct.kf.setImage(with: url)
         
         self.nameLabel.text = label
+        self.priceLabel.text = price
     }
     
     private func setupUI(){
         self.contentView.addSubview(imageProduct)
         self.contentView.addSubview(nameLabel)
+        self.contentView.addSubview(priceLabel)
         
         imageProduct.layer.cornerRadius = 10
         imageProduct.layer.masksToBounds = true
         
         imageProduct.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
         
@@ -68,6 +80,10 @@ class ProductCell: UITableViewCell {
             nameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
+            priceLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            priceLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
+            priceLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor),
+            priceLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
             
         ])
     }
